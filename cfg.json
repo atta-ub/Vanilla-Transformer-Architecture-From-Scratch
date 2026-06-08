@@ -1,0 +1,11 @@
+{
+    "max_seq_len": 100,
+    "batch_size": 32,
+    "d_model": 256,
+    "n_heads": 8,
+    "n_blocks": 4,
+    "vocab_size": 12000,
+    "lr": 0.0001,
+    "warmup_steps": 4000,
+    "epochs": 50
+}
