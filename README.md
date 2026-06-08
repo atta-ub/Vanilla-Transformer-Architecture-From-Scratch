@@ -16,5 +16,7 @@ The main components of this architecture are
 
 Essentially, the two main components of transformer are Encoder and Deecoder blocks, but once we have the above described components ready, we can easily obtain the encoder and decoder blocks. 
 
+Our main goal to build a model that can translate english sentences to spanish and we train our data on English and Spanish translation data from  "Helsinki-NLP/europarl" dataset.
+
 
 
