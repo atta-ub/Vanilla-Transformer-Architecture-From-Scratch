@@ -140,6 +140,7 @@ class CrossAttention(nn.Module):
         return self.W_O(out)
 
 
+# feedforward network
 class FFN(nn.Module):
     def __init__(self, d_model):
         super().__init__()
@@ -160,9 +161,7 @@ class FFN(nn.Module):
         return l2_o
 
 
-# ------------------------------------------------------------------
-#  Layer Norm
-# ------------------------------------------------------------------
+#  layer norm
 
 
 class LayerNorm(nn.Module):
@@ -170,19 +169,15 @@ class LayerNorm(nn.Module):
         super().__init__()
         self.d_model = d_model
 
-        # register in the model's state dictionary and update them during backpropagation
         self.gamma = nn.Parameter(torch.ones(self.d_model))
         self.beta = nn.Parameter(torch.zeros(self.d_model))
 
     def forward(self, in1p2, epsilon=1e-5):
 
-        # compute the mean and var for each token across the d_model dimension
+        # mean and var for each token across the d_model dimension
         mu = in1p2.mean(axis=-1, keepdims=True)
-
-        # var = in1p2.var(axis=-1, keepdims=True)
         var = in1p2.var(axis=-1, unbiased=False, keepdims=True)
 
-        # normalize the input tensor
         o_normalized = (in1p2 - mu) / torch.sqrt(var + epsilon)
 
         # scale and shift using the learnable parameters
